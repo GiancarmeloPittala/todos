@@ -18,12 +18,14 @@ export const useAllergenStore = defineStore('allergens', () => {
 
   async function init(){
     try {
-      const { data: allergeni } = await useFetch('http://localhost/api/allergen', {
-        method: 'GET',
-      });
-      allergens.value = allergeni.value.data;
+      // const { data: allergeni } = await useFetch('https://jsonplaceholder.typicode.com/todos', {
+      //   method: 'GET',
+      // });
+
+      // allergens.value = allergeni.value.data;
+      allergens.value = []
     } catch (error) {
-      
+      console.error( error )
     }
   }
 
@@ -33,12 +35,12 @@ export const useAllergenStore = defineStore('allergens', () => {
     try {
       if ( !title || !description ) throw "Manca un dato!";
 
-      const { data: allergene } = await useFetch('http://localhost/api/allergen', {
-        method: 'POST',
-        body: { data: { title, description } }
-      });
+      // const { data: allergene } = await useFetch('https://jsonplaceholder.typicode.com/todos', {
+      //   method: 'POST',
+      //   body: { data: { title, description } }
+      // });
 
-      allergens.value.push(allergene.value.data)
+      allergens.value.push({ title, description })
 
     } catch (error) {
       throw error
